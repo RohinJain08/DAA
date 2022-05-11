@@ -1,0 +1,65 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+final_array = []
+
+def mergeArrays(arr1, arr2, iterations):
+
+    arr3 = []
+    i = j = 0
+
+    while i < len(arr1) and j < len(arr2):
+
+        if arr1[i] < arr2[j]:
+            arr3.append(arr1[i])
+            i += 1
+        else:
+            arr3.append(arr2[j])
+            j += 1
+
+        iterations += 1
+
+    arr3.extend(arr1[i:])
+    arr3.extend(arr2[j:])
+
+    return iterations
+
+
+def mergeList(arr1, arr2):
+
+    arr3 = []
+    i = j = 0
+
+    while i < len(arr1) and j < len(arr2):
+
+        if arr1[i] < arr2[j]:
+            arr3.append(arr1[i])
+            i += 1
+        else:
+            arr3.append(arr2[j])
+            j += 1
+    arr3.extend(arr1[i:])
+    arr3.extend(arr2[j:])
+
+    return arr3
+
+for i in range(1, 201):
+    arr1 = [1, 8, 14, 20, 21, 34, 67, 91]
+    arr2 = [2, 4, 9, 24, 45, 78, 100]
+    final_array.append(mergeArrays(arr1, arr2, i))
+
+sorted_array = mergeList(arr1,arr2)
+
+print("ARRAY-1 :",arr1)
+print("\nARRAY-2 :",arr2)
+print("\nSORTED ARRAY : ",sorted_array)
+
+yAxis = list(range(1, 201))
+
+plt.scatter(final_array, yAxis)
+plt.plot(final_array, yAxis, color='red', label="O(n)")
+plt.title("Merging Two Sorted Array")
+plt.xlabel("Iterations")
+plt.legend()
+plt.ylabel("Array")
+plt.show()

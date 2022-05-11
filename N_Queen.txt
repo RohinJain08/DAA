@@ -1,0 +1,47 @@
+
+def Place_Queen(x, r, c):
+
+    for i in range(r):
+        if x[i][c] == 'Q':
+            return False
+
+    (i, j) = (r, c)
+
+    while i >= 0 and j >= 0:
+        if x[i][j] == 'Q':
+            return False
+        i = i - 1
+        j = j - 1
+
+    (i, j) = (r, c)
+
+    while i >= 0 and j < len(x):
+        if x[i][j] == 'Q':
+            return False
+        i = i - 1
+        j = j + 1
+
+    return True
+
+def print_solution(x):
+    for r in x:
+        print(str(r).replace('\'', ''))
+    print()
+
+def NQueen(x, k):
+    if k == len(x):
+        print_solution(x)
+        return
+
+    for i in range(len(x)):
+        if Place_Queen(x, k, i):
+            x[k][i] = 'Q'
+            NQueen(x, k + 1)
+            x[k][i] = '–'
+
+N = 4
+
+X = [['–' for x in range(N)] for y in range(N)]
+
+print("\n ** N-QUEEN PROBLEM **\n")
+NQueen(X, 0)

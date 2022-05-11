@@ -1,0 +1,47 @@
+
+n = int(input("Enter the number of items : "))
+max_weight = int(input("Enter Maximum weight : "))
+profit = list(map(int, input("Enter profit value of items: ").split()))
+weight = list(map(int, input("Enter weight of items: ").split()))
+
+wt=0
+max_profit=0
+
+#Calculating Profit/Weight ratio
+ppw = []
+for i in range(n):
+    ppw.append(profit[i]/weight[i])
+
+#Arranging in Decreasing order of Profit/Weight Ratio
+
+order=[]
+for i in range(n):
+    order.append(ppw.index(max(ppw)))
+    ppw[ppw.index(max(ppw))]=0
+
+i = 0
+
+print("\nITEMS IN THE KNAPSACK : ")
+print("\nITEM\tWEIGHT\t  PROFIT VALUE\t FRACTION")
+
+while wt!=max_weight:
+
+    if (wt+weight[order[i]])<=max_weight:
+
+        max_profit+=profit[order[i]]
+        wt+=weight[order[i]]
+
+        print("%d\t\t  %d\t\t\t%d\t\t    1"%(order[i]+1,weight[order[i]],profit[order[i]]))
+
+    else:
+
+        fraction = (max_weight-wt)/weight[order[i]]
+        value = profit[order[i]]*fraction
+        max_profit+= value
+        wt+=(max_weight-wt)
+
+        print("%d\t\t  %d\t\t\t%0.2f\t    %0.2f"%(order[i]+1,weight[order[i]],value,fraction))
+
+    i+=1
+
+print("\n--> MAXIMUM PROFIT = %0.2f"%max_profit)

@@ -1,0 +1,55 @@
+import numpy as np
+import random
+import matplotlib.pyplot as plt
+
+
+def partition(start, end, arr):
+    pivot_index = start
+    pivot = arr[pivot_index]
+
+    while start < end:
+        while start < len(arr) and arr[start] <= pivot:
+            start += 1
+
+        while arr[end] > pivot:
+            end -= 1
+
+        if (start < end):
+            arr[start], arr[end] = arr[end], arr[start]
+
+    arr[end], arr[pivot_index] = arr[pivot_index], arr[end]
+
+    return end
+
+
+def quick_sort(start, end, arr):
+    if (start < end):
+        global count
+
+        p = partition(start, end, arr)
+
+        count = count + 1
+
+        quick_sort(start, p - 1, arr)
+        quick_sort(p + 1, end, arr)
+
+
+count = 0
+iterations = []
+n = []
+
+x = list(np.arange(1, 1000, 1))
+
+for i in range(1, 201):
+    arr = random.sample(x, i)
+    quick_sort(0, len(arr) - 1, arr)
+    print(f'Sorted array: {arr}')
+    iterations.append(count)
+    n.append(i)
+
+plt.plot(n, iterations, color="red", label="O(n*logn)")
+plt.title("QUICK SORT")
+plt.xlabel("Iterations")
+plt.legend()
+plt.ylabel("Array")
+plt.show()

@@ -1,0 +1,49 @@
+INF = 9999999
+
+Vertices = 5
+
+G = [ [0, 2, 0, 6, 0],
+      [2, 0, 3, 8, 5],
+      [0, 3, 0, 0, 7],
+      [6, 8, 0, 0, 9],
+      [0, 5, 7, 9, 0]]
+
+# Array to track selected vertex
+selected = [0, 0, 0, 0, 0]
+
+no_edge = 0
+
+selected[0] = True
+
+# Edges < (Vertices -1) in MST
+
+print("\n<<< PRIM'S ALGORITHM FOR MINIMUM SPANNING TREE >>>")
+print("\n  EDGE   :  WEIGHT\n")
+
+while (no_edge < Vertices - 1):
+
+    # For every vertex in the set S,find the all adjacent vertices
+    # Calculate the distance from the vertex Selected At Step 1
+    # If the vertex is already in the set S, discard it
+    # otherwise choose another vertex nearest to selected vertex at step 1
+
+    minimum = INF
+    x = 0
+    y = 0
+
+    for i in range(Vertices):
+
+        if selected[i]:
+            for j in range(Vertices):
+                if ((not selected[j]) and G[i][j]):
+
+                    # Not in Selected & Edge Present
+                    if minimum > G[i][j]:
+
+                       minimum = G[i][j]
+                       x = i
+                       y = j
+
+    print(str(x) + " --> " + str(y) + "  :    " + str(G[x][y]))
+    selected[y] = True
+    no_edge += 1

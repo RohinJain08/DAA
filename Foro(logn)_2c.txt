@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+iterationsList = []
+iterations = 0
+
+def function(n):
+
+  i = 1
+  iterations = 0
+
+  while i < n:
+    iterations = iterations + 1
+    i = i * 2
+  return iterations
+
+for i in range(1,201):
+  iterations = function(i)
+  iterationsList.append(iterations)
+
+yAxis = list(range(1, 201))
+plt.scatter(iterationsList, yAxis)
+plt.plot(np.log2(yAxis) + 1, yAxis,color='red', label="O(log n)")
+plt.title("For O(log n)")
+plt.xlabel("Iterations")
+plt.legend()
+plt.ylabel("Array")
+plt.show()

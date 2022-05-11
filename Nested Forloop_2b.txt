@@ -1,0 +1,34 @@
+import matplotlib.pyplot as plt
+
+iterations_List = []
+iterations = 0
+
+def function(n):
+
+  iterations = 0
+
+  for i in range(1, n):
+    for j in range(1,n):
+      iterations = iterations  + 1
+
+  return iterations
+
+for i in range(1,201):
+
+  iterations = function(i)
+  iterations_List.append(iterations)
+
+yAxis = list(range(1, 201))
+
+print(yAxis)
+print("\n",iterations_List)
+
+# PLOTTING GRAPH
+
+plt.scatter(iterations_List, yAxis)
+plt.plot(iterations_List, yAxis,color='red', label="O(n*n)")
+plt.title("Nested For Loops Time Complexity")
+plt.xlabel("Iterations")
+plt.ylabel("Array")
+plt.legend()
+plt.show()

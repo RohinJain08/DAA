@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+
+iterations_list=[]
+iterations = 0
+
+for i in range (1,201) :
+    iterations = iterations + 1 ;
+    iterations_list.append(iterations)
+
+yaxis = list(range(1,201))
+print(yaxis)
+print("\n",iterations_list)
+
+# PLOTTING GRAPH
+
+plt.scatter(iterations_list,yaxis)
+plt.plot(yaxis,yaxis,color='red',label="O(n)")
+plt.title("For Loop Time Complexity")
+plt.xlabel("Iterations")
+plt.ylabel("Array")
+plt.legend()
+plt.show()
